@@ -1,0 +1,46 @@
+class Rocket {
+  - fuelCapacity: int
+  - currentSpeed: int
+  - altitude: int
+  + launch(): void
+  + increaseSpeed(speed: int): void
+  + changeAltitude(altitude: int): void
+}
+
+class Payload {
+  - weight: int
+  - destination: String
+  - status: String
+  + setWeight(weight: int): void
+  + setDestination(destination: String): void
+  + setStatus(status: String): void
+}
+
+
+--------------------------------
+|           Rocket             |
+--------------------------------
+| - fuelCapacity: int          |
+| - currentSpeed: int          |
+| - altitude: int              |
+--------------------------------
+| + launch(): void             |
+| + increaseSpeed(speed: int): |
+| + changeAltitude(altitude:   |
+|      int): void              |
+--------------------------------
+
+--------------------------------
+|          Payload             |
+--------------------------------
+| - weight: int                |
+| - destination: String        |
+| - status: String             |
+--------------------------------
+| + setWeight(weight: int):   |
+|      void                    |
+| + setDestination(destination:|
+|      String): void           |
+| + setStatus(status: String):|
+|      void                    |
+--------------------------------

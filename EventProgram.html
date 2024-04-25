@@ -1,0 +1,114 @@
+<!--Code for CSC102 Sp 2024 Event Driven Programming
+    written by: Daniel Diaz
+                dandiaz2@uat.edu
+                24March2024
+                Updated:24April2024
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Move That Meme</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #420505; /* Dark red background */
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+    }
+    #meme {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+    }
+    /* Change button color on hover */
+    button:hover {
+      background-color: #357ae8; /* Darker blue on hover */
+    }
+    /* Styling for the box around "Move That Jpeg" text */
+    .box {
+      display: inline-block;
+      background-color: #f59797; /* White background */
+      padding: 10px 20px;
+      border-radius: 10px; /* Rounded corners */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background music -->
+  <audio id="backgroundMusic" loop>
+    <source src="elevator-to-heaven-aaron-paul-low-main-version-21242-01-42.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="box">
+    <h1>Move That Jpeg</h1>
+  </div>
+
+  <img id="meme" src="Democracy.jpg" alt="Helldiver">
+  <!-- Start button to initiate movement -->
+  <button id="startBtn">Start</button>
+  <!-- Stop button to halt movement -->
+  <button id="stopBtn" disabled>Stop</button>
+
+  <!-- Include JavaScript file -->
+  <script src="Eventcode.js"></script>
+
+  <script>
+    // Decision logic to handle starting and stopping background music
+    var backgroundMusic = document.getElementById("backgroundMusic");
+    var startBtn = document.getElementById("startBtn");
+    var stopBtn = document.getElementById("stopBtn");
+    var colorInterval; // Variable to store setInterval reference
+
+    function startBackgroundMusic() {
+      if (!backgroundMusic.paused) return; // If music is already playing, don't start again
+      backgroundMusic.play();
+      startBtn.disabled = true; // Disable start button
+      stopBtn.disabled = false; // Enable stop button
+
+      // Change background color every 3 seconds when music is playing
+      colorInterval = setInterval(function() {
+        changeBackgroundColor(); // Change background color
+      }, 3000);
+    }
+
+    function stopBackgroundMusic() {
+      if (backgroundMusic.paused) return; // If music is already stopped, don't stop again
+      backgroundMusic.pause();
+      backgroundMusic.currentTime = 0; // Reset music to start
+      startBtn.disabled = false; // Enable start button
+      stopBtn.disabled = true; // Disable stop button
+      clearInterval(colorInterval); // Stop changing background color
+    }
+
+    // Function to change background color
+    function changeBackgroundColor() {
+      var colors = ['#420505', '#052042', '#204205', '#420542']; // Array of colors
+      var randomColor = colors[Math.floor(Math.random() * colors.length)]; // Get random color
+      document.body.style.backgroundColor = randomColor; // Change background color
+    }
+
+    // Add event listeners to the start and stop buttons
+    startBtn.addEventListener("click", startBackgroundMusic);
+    stopBtn.addEventListener("click", stopBackgroundMusic);
+  </script>
+
+  <!-- The song is written by Aaron Paul Low and is called Elevator to Heaven -->
+  <!-- Here is the accreditation link and License code -->
+  <!-- Music from #Uppbeat (free for Creators!): -->
+  <!-- https://uppbeat.io/t/aaron-paul-low/elevator-to-heaven -->
+  <!-- License code: YXJPT13KPNTLEWR4 -->
+</body>
+</html>

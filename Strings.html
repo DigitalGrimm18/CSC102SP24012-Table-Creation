@@ -1,0 +1,85 @@
+<!--Code for CSC102 Sp 2024 Palindrome Checker
+    written by: Daniel Diaz
+                dandiaz2@uat.edu
+                5April2024
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #884e4e;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 4px solid black; /* Adding black border */
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultImage {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Palindrome Checker</h1>
+        <input type="text" id="userInput" placeholder="Enter a word">
+        <button onclick="checkPalindrome()">Check</button>
+        <div id="output"></div>
+        <img src="Palindrome.jpg" id="resultImage" alt="Result Image">
+        <script>
+            // This function checks if the string itself is a palindrome
+            function isPalindrome(str) {
+                // This removes the spaces and converts it to lowercase for comparison
+                const strippedStr = str.replace(/\s/g, '').toLowerCase();
+                // This reverses the string and compares it with the original
+                return strippedStr === strippedStr.split('').reverse().join('');
+            }
+
+            // This defines the function that will check if the answer is a palindrome
+            function checkPalindrome() {
+                // This obtains the user's input
+                const userInput = document.getElementById('userInput').value;
+                // This checks if the input is a palindrome
+                const isPal = isPalindrome(userInput);
+                // This creates the message that the user will see based off their input
+                const message = isPal ? `"${userInput}" is a palindrome!` : `"${userInput}" is not a palindrome.`;
+                // This displays the message
+                document.getElementById('output').innerHTML = `<p>${message}</p>`;
+                // Update the image based on the result
+                const resultImage = document.getElementById('resultImage');
+                resultImage.src = isPal ? 'Palindrome.jpg' : 'tacocat.jpg';
+                resultImage.alt = isPal ? 'Palindrome Image' : 'Not Palindrome Image';
+            }
+        </script>
+    </div>
+</body>
+</html>

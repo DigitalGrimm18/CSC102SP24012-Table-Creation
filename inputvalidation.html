@@ -1,0 +1,112 @@
+<!--Code for CSC102 Sp 2024 UserInput Validation
+    written by: Daniel Diaz
+                dandiaz2@uat.edu
+                24March2024
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Please</title>
+    <!--The code under here changes the style of the webpage-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(173, 177, 235);
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #000000;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: rgb(76, 12, 226);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #68688f;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!--This sets the text for the input boxes-->
+    <h1>Enter Your Information Here Please</h1>
+    <form id="infoForm">
+        <input type="text" id="firstName" placeholder="First Name">
+        <br>
+        <input type="text" id="lastName" placeholder="Last Name">
+        <br>
+        <input type="text" id="zipCode" placeholder="Zip Code">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="error"></div>
+
+    <div id="message" style="display: none;">
+        <h2>Important Information:</h2>
+        <p>Thanks for the Info.</p>
+        <img src="Scam.jpg" alt="Secret Image">
+    </div>
+
+    <script>
+        document.getElementById("infoForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            var firstName = document.getElementById("firstName").value.trim(); // Gets the first name
+            var lastName = document.getElementById("lastName").value.trim(); // Gets the last name
+            var fullName = firstName + " " + lastName; // Combines the first and last names
+
+            var zipCode = document.getElementById("zipCode").value.trim(); // this collects the zipcode
+
+            var errorMessage = document.getElementById("error"); // This contains the error message to be displayed
+
+            // Checks if the full name is valid
+            if (fullName.length > 20) {
+                errorMessage.textContent = "Full name cannot exceed 20 characters.";
+                return; // Stop execution
+            }
+
+            // Checks if the zip code is valid
+            if (!(/^\d{5}$/.test(zipCode))) {
+                errorMessage.textContent = "Invalid zip code. Please enter 5 digits.";
+                return; // Stop execution
+            }
+
+            errorMessage.textContent = ""; // Clears any previous error message
+
+            // If inputs are valid, display secret message
+            document.getElementById("message").style.display = "block";
+        });
+    </script>
+</body>
+</html>
